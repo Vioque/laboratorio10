@@ -116,6 +116,10 @@ console.log('Array intercambiado', swapFirstSecond(newArray))
 /** Implementa una función firstEqual tal que admita multiples strings como argumento de entrada así como un
  carácter cualquiera, y devuelva un booleano indicando si todos los strings comienzan por dicho carácter o no. */
 
-const firstEqual = (character, ...strings) => strings.forEach((string, i) => string[i] === character)
+const firstEqual = (character, ...strings) => {
+    console.log (strings)
+    const letters = strings.map(string => string.split(''))
+    console.log(letters)
+}
 
-console.log(firstEqual('J', 'Laura', 'María', 'Jorge', 'Javier', 'Dani'))
+console.log(firstEqual('J', 'Jaura', 'Jaría', 'Jorge', 'Javier', 'Jani'))
