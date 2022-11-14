@@ -117,9 +117,40 @@ console.log('Array intercambiado', swapFirstSecond(newArray))
  carácter cualquiera, y devuelva un booleano indicando si todos los strings comienzan por dicho carácter o no. */
 
 const firstEqual = (character, ...strings) => {
-    console.log (strings)
-    const letters = strings.map(string => string.split(''))
-    console.log(letters)
+    const letters = strings.map(string => string.split('')).map(letter => head(letter))
+    // Uso la función head creada en otro ejercicio para quedarme sólo con el primer elemento
+    return letters.every(letter => letter === character)
 }
 
+console.log(firstEqual('L', 'Laura', 'María', 'Jorge', 'Javier', 'Dani'))
 console.log(firstEqual('J', 'Jaura', 'Jaría', 'Jorge', 'Javier', 'Jani'))
+
+/** Implementa una función longest que admita múltiples arrays como entrada, y devuelva el array más largo. */
+
+const longest = (...inputArrays) => {
+    const mayor = inputArrays.sort((a, b) => a.length > b.length ? -1 : 1)
+    return mayor[0]
+}
+
+console.log(longest(['a', 'b', 'c', 'd', 'f'], [1, 2, 3], [1, 2, 3, 4], [1, 2, 3, 4, 5, 6]))
+
+/** Implementa una función llamada searchInStringV1 tal que dado un string como parámetro y también un carácter,
+ devuelva cuantas veces aparece dicho carácter en el string. */
+
+const searchInStringV1 = (character, string) => Array.from(string).reduce((acc, element) => {
+    if (element === character) acc++
+    return acc
+}, 0)
+
+console.log(searchInStringV1('s', 'Este es el string a comprobar cuantas eses hay'))
+
+/** Implementa el mismo ejercicio de antes, llamando a la función searchInStringV2 , encontrando otra alternativa sin
+ usar reduce . */
+
+const searchInStringV2 = (character, string) => Array.from(string).forEach(element, i)
+=>
+{
+    element === character
+}
+
+console.log(searchInStringV2('s', 'Este es el string a comprobar cuantas eses hay'))
