@@ -147,10 +147,63 @@ console.log(searchInStringV1('s', 'Este es el string a comprobar cuantas eses ha
 /** Implementa el mismo ejercicio de antes, llamando a la función searchInStringV2 , encontrando otra alternativa sin
  usar reduce . */
 
-const searchInStringV2 = (character, string) => Array.from(string).forEach(element, i)
-=>
-{
-    element === character
+const searchInStringV2 = (character, string) => {
+    let count = Array.from(string)
+    let result = 0
+    count.forEach((element, i) => {
+        if (element === character) {
+            result += 1
+        }
+    })
+    return result
 }
 
 console.log(searchInStringV2('s', 'Este es el string a comprobar cuantas eses hay'))
+
+/** Implementa una función llamada sortCharacters tal que dado un string, lo devuelva con sus letras ordenadas
+ alfabéticamente */
+
+const sortCharacters = string => Array.from(string).sort((a, b) => a > b ? 1 : -1)
+
+console.log(sortCharacters('fenDio'))
+
+/** Implementa una función llamada shout tal que, dadas múltiples palabras como entrada, devuelva todas las palabras
+ concatenadas en un texto donde aparezcan en mayúsculas y con exclamaciones. */
+
+const shout = (...strings) => {
+    let concatened = strings.map(word => word.toUpperCase())
+    concatened.unshift('¡')
+    concatened.push('!')
+    return concatened.join(' ')
+}
+
+console.log(shout('Qué', 'bien', 'ha', 'quedado'))
+
+/** Dada la siguiente lista de la compra:
+
+ A. Obtén una nueva lista donde aparezca el IVA (21%) de cada producto.
+ B. Ordena la lista de más a menos unidades.
+ C. Obtén el subtotal gastado en droguería.
+ D. Obtén la lista por consola en formato "Producto -> Precio Total €" y ordenada por categoría. */
+
+const shoppingCart = [
+    { category: 'Frutas y Verduras', product: 'Lechuga', price: 0.8, units: 1 },
+    { category: 'Carne y Pescado', product: 'Pechuga pollo', price: 3.75, units: 2 },
+    { category: 'Droguería', product: 'Gel ducha', price: 1.15, units: 1 },
+    { category: 'Droguería', product: 'Papel cocina', price: 0.9, units: 3 },
+    { category: 'Frutas y Verduras', product: 'Sandía', price: 4.65, units: 1 },
+    { category: 'Frutas y Verduras', product: 'Puerro', price: 4.65, units: 2 },
+    { category: 'Carne y Pescado', product: 'Secreto ibérico', price: 5.75, units: 2 },
+]
+
+const A = products => products.map(product => ({ ...product, iva: (product.price * 0.21).toFixed(2) }))
+console.log(A(shoppingCart))
+
+const B = products => products.sort((a, b) => a.units > b.units ? 1 : -1)
+console.log(B(shoppingCart))
+
+const C = products => products.reduce((subtotal, product) => product.category === 'Droguería' ? subtotal + product.price : subtotal, 0)
+console.log(C(shoppingCart))
+
+const D = products => products.map(product => 'Producto -> ' + product.product + ' ' + (product.price * product.units) + ' €').sort((a, b) => a.category > b.category ? 1 : -1)
+console.log(D(shoppingCart))
