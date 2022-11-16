@@ -205,5 +205,5 @@ console.log(B(shoppingCart))
 const C = products => products.reduce((subtotal, product) => product.category === 'Droguería' ? subtotal + product.price : subtotal, 0)
 console.log(C(shoppingCart))
 
-const D = products => products.map(product => 'Producto -> ' + product.product + ' ' + (product.price * product.units) + ' €').sort((a, b) => a.category > b.category ? 1 : -1)
+const D = products => products.sort((a, b) => a.category > b.category ? 1 : -1).map(product => 'Producto -> ' + product.product + ' ' + (product.price * product.units) + ' €')
 console.log(D(shoppingCart))
